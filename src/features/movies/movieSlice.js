@@ -4,15 +4,13 @@ import movieApi from "../../common/apis/movieApi";
 
 const apiKey = process.env.REACT_APP_MOVIE_API_KEY; // Access the environment variable directly
 
-export const fetchAsyncMovies = createAsyncThunk("movies/fetchAsyncMovies", async () => {
-  const movieText = "Harry";
-  const response = await movieApi.get(`?apiKey=${apiKey}&s=${movieText}&type=movie`);
+export const fetchAsyncMovies = createAsyncThunk("movies/fetchAsyncMovies", async (text) => {
+  const response = await movieApi.get(`?apiKey=${apiKey}&s=${text}&type=movie`);
   return response.data;
 });
 
-export const fetchAsyncShows = createAsyncThunk("movies/fetchAsyncShows", async () => {
-  const seriesText = "Friends";
-  const response = await movieApi.get(`?apiKey=${apiKey}&s=${seriesText}&type=series`);
+export const fetchAsyncShows = createAsyncThunk("movies/fetchAsyncShows", async (text) => {
+  const response = await movieApi.get(`?apiKey=${apiKey}&s=${text}&type=series`);
   return response.data;
 });
 
@@ -31,8 +29,8 @@ const movieSlice = createSlice({
   name: "movies",
   initialState,
   reducers: {
-    addMovies: (state, { payload }) => {
-      state.movies = payload;
+    removeSelection: (state) => {
+      state.getSelectedDetail = {};
     },
   },
   extraReducers: {
@@ -57,7 +55,7 @@ const movieSlice = createSlice({
   },
 });
 
-export const { addMovies } = movieSlice.actions;
+export const { removeSelection } = movieSlice.actions;
 export const getAllShows = (state) => state.movies.shows;
 export const getAllMovies = (state) => state.movies.movies;
 export const getSelectedDetail = (state) => state.movies.details;
