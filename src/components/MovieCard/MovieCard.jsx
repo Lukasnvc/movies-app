@@ -2,6 +2,7 @@ import "./MovieCard.scss";
 
 import { Link } from 'react-router-dom';
 import React from 'react'
+import noImage from '../../common/noImage.png';
 
 const MovieCard = ({ data }) => {
   
@@ -10,7 +11,12 @@ const MovieCard = ({ data }) => {
       <Link to={`movie/${data.imdbID}`}>
       <div className="card-inner">
         <div className="card-top">
-          <img src={data.Poster} alt={data.Title} />
+            <img src={data.Poster ===
+              "N/A"
+              ? noImage
+              : data.Poster
+            }
+              alt = { data.Title } />
             </div>
             <div className="card-bottom">
             <div className="card-info">

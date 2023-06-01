@@ -2,6 +2,7 @@ import "./Header.scss"
 
 import React, { useState } from 'react';
 import { fetchAsyncMovies, fetchAsyncShows } from "../../features/movies/movieSlice";
+import { randomMovie, randomShow } from "../../common/randomPick";
 
 import { FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -21,10 +22,14 @@ const Header = () => {
     setText('')
     setSearch('Search')
   }
+  const handleClick = () => {
+    dispatch(fetchAsyncMovies(randomMovie))
+    dispatch(fetchAsyncShows(randomShow))
+  }
   return (
     <div className='header'>
      
-     <Link to="/" className="logo"><img src={Logo} alt="" /></Link>
+     <Link to="/" onClick={handleClick} className="logo"><img src={Logo} alt="logo" /></Link>
       <div className="search-bar">
         <form onSubmit={handleSubmit}>
           <input type="text" value={text} placeholder={search} onChange={ (e) => setText(e.target.value)} />

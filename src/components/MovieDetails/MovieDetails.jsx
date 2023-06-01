@@ -1,10 +1,10 @@
 import './MovieDetails.scss';
 
-import { FaCalendarAlt, FaFilm, FaStar, FaThumbsUp } from 'react-icons/fa';
 import React, { useEffect } from 'react';
 import { fetchAsyncDetail, getSelectedDetail, removeSelection } from '../../features/movies/movieSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
+import noImage from '../../common/noImage.png';
 import { useParams } from 'react-router-dom';
 
 const MovieDetails = () => {
@@ -28,19 +28,27 @@ const MovieDetails = () => {
         <div className="movie-title">
           {data.Title}
         </div>
-        <div className="movie-rating">
-          <span>IMDB Rating
-          <div className='icon star'><FaStar /></div> : {data.imdbRating}</span>
-          <span>IMDB Vote <div className='icon thumbs'><FaThumbsUp /></div> : {data.imdbVotes}</span>
-          <span>Runtime
-            <div className='icon film'><FaFilm /></div>
-             : {data.Runtime}</span>
-          <span>Year
-          <div className='icon date'><FaCalendarAlt /></div> : {data.Year}</span>
+            
+        <div className="item-detail">
+          <span>{data.Rated}</span>
+              {data.totalSeasons && <span>S : {data.totalSeasons}</span>}
+          <span>{data.Runtime}</span>
+          <span>{data.Released}</span>
         </div>
-        <div className="movie plot">
+
+        <div className="movie-rating">
+            <span>IMDB Rating : {data.imdbRating}</span>
+          <>
+            {data.Ratings?.map((rating, index) => (
+              <span key={index}>{rating.Source} : {rating.Value}</span>
+            ))}
+          </>
+        </div>
+            
+        <div className="movie-plot">
           {data.Plot}
         </div>
+            
         <div className="movie-info">
           <div>
             <span>Director</span>
@@ -61,11 +69,18 @@ const MovieDetails = () => {
           <div>
             <span>Awards</span>
             <span>{data.Awards}</span>
+              </div>
+          <div>
+            <span>Earnings</span>
+            <span>{data.BoxOffice}</span>
           </div>
         </div>
       </div>
-      <div className="section-right">
-        <img src={data.Poster} alt={data.Title} />
+          <div className="section-right">
+            {data.Poster ===
+              "N/A" ? (<img className='noImage' src={noImage} alt='empty' />) : (
+              <img src={data.Poster} alt={data.Title} />)
+            }
       </div>
       </>)}
     </div>
