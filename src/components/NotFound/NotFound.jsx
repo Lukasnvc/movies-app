@@ -5,7 +5,7 @@ import notFound from '../../common/404.png';
 
 const NotFound = () => {
   return (
-    <div>
+    <div className='notFound'>
       <img src={notFound} alt="404" />
     </div>
   )

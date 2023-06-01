@@ -32,7 +32,9 @@ const MovieListing = () => {
       <div className="movie-list">
         <h2>Movies</h2>
         <div className="movie-container">
-        <Slider {...Settings}>{renderMovies}</Slider>
+          <Slider {...Settings}>
+            {renderMovies}
+          </Slider>
         </div>
       </div>
       <div className="show-list">

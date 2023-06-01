@@ -15,7 +15,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/movies-app" element={<Home />} />
-          <Route path="/movie/:imdbID" element={<MovieDetail />} />
+          <Route path="movies-app/movie/:imdbID" element={<MovieDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
