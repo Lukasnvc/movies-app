@@ -1,8 +1,13 @@
-import React from 'react'
+import './NotFound.scss'
+
+import React from 'react';
+import notFound from '../../common/404.png';
 
 const NotFound = () => {
   return (
-    <div>NotFound</div>
+    <div>
+      <img src={notFound} alt="404" />
+    </div>
   )
 }
 

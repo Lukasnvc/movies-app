@@ -29,7 +29,7 @@ const Header = () => {
   return (
     <div className='header'>
      
-     <Link to="/" onClick={handleClick} className="logo"><img src={Logo} alt="logo" /></Link>
+     <Link to="/movie-app" onClick={handleClick} className="logo"><img src={Logo} alt="logo" /></Link>
       <div className="search-bar">
         <form onSubmit={handleSubmit}>
           <input type="text" value={text} placeholder={search} onChange={ (e) => setText(e.target.value)} />
